@@ -4,25 +4,33 @@ spring:
       naming:
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
         physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
-      ddl-auto: update
+      ddl-auto: create-drop
     show-sql: true
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
   datasource:
-    #    username: dbcba
-    #    password: dowjdvygus44~
     username: root
     password: password
-    #    url: jdbc:mysql://localhost:3306/dbcba?characterEncoding=UTF-8&serverTimezone=UTC
     url: jdbc:mysql://localhost:3306/test?characterEncoding=UTF-8&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
+
   jackson:
     property-naming-strategy: SNAKE_CASE
+
   http:
     encoding:
       charset: utf-8
       enabled: true
       force: true
+
+  servlet:
+    multipart:
+      max-file-size: 128KB
+      max-request-size: 128KB
+
+upload:
+  dir:
+    path: upload/
 
 security:
   jwt:

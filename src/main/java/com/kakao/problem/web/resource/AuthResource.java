@@ -8,13 +8,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletRequest;
 
 import static org.springframework.http.ResponseEntity.ok;
 
@@ -36,11 +34,7 @@ public class AuthResource {
     UserRepository users;
 
     @GetMapping("/refresh")
-    public ResponseEntity<AuthenticationResponse> refreshToken(HttpServletRequest req) {
-
-        String reqToken = jwtTokenProvider.resolveToken(req);
-        Authentication authentication = jwtTokenProvider.getAuthentication(reqToken);
-        User user = (User)authentication.getPrincipal();
+    public ResponseEntity<AuthenticationResponse> refreshToken(@AuthenticationPrincipal User user) {
 
         String token = jwtTokenProvider.createToken(user.getUsername(), user.getRoles());
         return ok(new AuthenticationResponse(user.getUsername(), token));

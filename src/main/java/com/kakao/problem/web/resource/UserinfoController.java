@@ -2,22 +2,16 @@ package com.kakao.problem.web.resource;
 
 import com.kakao.problem.web.domain.AuthenticationRequest;
 import com.kakao.problem.web.domain.AuthenticationResponse;
-import com.kakao.problem.web.domain.User;
 import com.kakao.problem.web.jwt.JwtTokenProvider;
-import com.kakao.problem.web.repository.UserRepository;
 import com.kakao.problem.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Arrays;
 
 import static org.springframework.http.ResponseEntity.ok;
 
