@@ -18,31 +18,16 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jackson:
     property-naming-strategy: SNAKE_CASE
-  messages:
-    basename: messages
-
-  mvc:
-    view:
-      prefix: /WEB-INF/jsp/
-      suffix: .jsp
-    static-path-pattern: /static/**
   http:
     encoding:
       charset: utf-8
       enabled: true
       force: true
 
+security:
+  jwt:
+    token:
+      secret-key: kakao
+
 server:
   port: 8080
-
-logging:
-  level:
-    root: error
-  file: /dbcba/tomcat/logs/application.log
-
-mybatis:
-  mapper-locations: mapper/**.xml
-
-push:
-  url: https://fcm.googleapis.com/fcm/send
-  key: AAAACaeKakM:APA91bHWco5gYqCgGywOB4YHWBDWj-SA26bKvdWDgmOSR7btSo-Nb6syVYmFzjmuvmAYC1BXVQFBJQxg9hVd92E5ZXLSUgdP8ppSzx6buvTOpdxf-4-_sajI1ouLWwsOIf1rEuDHOFFg
