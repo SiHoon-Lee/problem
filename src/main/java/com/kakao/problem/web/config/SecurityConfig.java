@@ -18,10 +18,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    JwtTokenProvider jwtTokenProvider;
+    private JwtTokenProvider jwtTokenProvider;
 
     @Autowired
-    UserDetailsService userDetailService;
+    private UserDetailsService userDetailService;
 
     @Bean
     @Override
@@ -43,8 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/user/signup").permitAll()
-                .antMatchers("/user/signin").permitAll()
+                .antMatchers("/user/*").permitAll()
                 .antMatchers("/auth/refresh").hasAnyAuthority("ROLE_USER")
                 .anyRequest().authenticated()
                 .and()
