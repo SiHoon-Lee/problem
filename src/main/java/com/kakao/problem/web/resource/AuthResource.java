@@ -44,7 +44,7 @@ public class AuthResource {
         Authentication authentication = jwtTokenProvider.getAuthentication(reqToken);
         User user = (User)authentication.getPrincipal();
 
-        String token = jwtTokenProvider.createToken(user.getUsername(), this.users.findByUsername(user.getUsername()).orElseThrow(() -> new UsernameNotFoundException("Username " + user.getUsername() + "not found")).getRoles());
+        String token = jwtTokenProvider.createToken(user.getUsername(), user.getRoles());
         return ok(new AuthenticationResponse(user.getUsername(), token));
     }
 }
