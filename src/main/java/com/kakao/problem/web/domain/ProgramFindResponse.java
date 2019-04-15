@@ -16,8 +16,9 @@ public class ProgramFindResponse {
     private List<ProgramSimpleInfo> programs;
 
     public ProgramFindResponse(String region, List<Program> programs) {
+
         this.region = region;
-        this.programs = programs.stream().map(program -> new ProgramSimpleInfo(program.getProgramName(), program.getCategoryName())).collect(Collectors.toList());
+        if(programs != null) this.programs = programs.stream().map(program -> new ProgramSimpleInfo(program.getProgramName(), program.getCategoryName())).collect(Collectors.toList());
     }
 
     @Data

@@ -34,12 +34,13 @@ public class ProgramResource {
         return ok(new ProgramBulkResponse(programBulkRequest.getFile().getOriginalFilename(), recordCnt));
     }
 
-    @PostMapping
+    @PostMapping("/service")
     public ResponseEntity<ProgramFindResponse> getProgram(@RequestBody @Valid ProgramFindRequest programFindRequest){
 
-        Region region = regionService.getRegionCode(programFindRequest.getRegionCode());
-        List<Program> programList = programService.getProgramsByRegionCode(region);
+        Region region = regionService.getRegion(programFindRequest.getServiceArea());
+        if(region == null) new Exception("Not Found ServiceArea");
 
+        List<Program> programList = programService.getProgramsByRegionCode(region);
         return ok(new ProgramFindResponse(region.getRegionId(), programList));
     }
 

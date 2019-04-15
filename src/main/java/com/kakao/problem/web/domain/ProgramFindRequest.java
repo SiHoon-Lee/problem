@@ -11,6 +11,6 @@ import javax.validation.constraints.NotNull;
 public class ProgramFindRequest {
 
     @NotNull
-    private String regionCode;
+    private String serviceArea;
 
 }

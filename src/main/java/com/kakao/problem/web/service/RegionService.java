@@ -35,4 +35,8 @@ public class RegionService {
         return regionRepository.findByRegionId(regionCode);
     }
 
+    public Region getRegion(String serviceArea){
+        return regionRepository.findByRegion(serviceArea);
+    }
+
 }

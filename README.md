@@ -27,15 +27,15 @@ curl -X POST \
   -F file=@program.csv
 ```
 
-* 지역코드 검색
+* 지역명 검색
 ```
 curl -X POST \
-  http://localhost:8080/program \
+  http://localhost:8080/program/service \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
-  -H 'postman-token: 50730daa-8cf1-bad4-12e3-741bfd8fe17e' \
+  -H 'postman-token: f61e9fbe-8c51-43af-7b00-f3684e83423a' \
   -d '{
-	"region_code" : "reg1"
+	"service_area" : "평창군"
 }'
 ```
 
