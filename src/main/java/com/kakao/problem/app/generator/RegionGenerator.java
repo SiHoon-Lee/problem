@@ -27,11 +27,11 @@ public class RegionGenerator implements IdentifierGenerator, Configurable {
                         .getIdentifierPropertyName(), object.getClass().getSimpleName());
 
         Stream ids = session.createQuery(query).stream();
-        Long max = ids.map(o -> Long.parseLong(String.valueOf(o).replace(prefix + "-", "")))
+        Long max = ids.map(o -> Long.parseLong(String.valueOf(o).replace(prefix, "")))
                 .mapToLong(o -> Long.parseLong(String.valueOf(o)))
                 .max()
                 .orElse(0L);
 
-        return prefix + "-" + (max + 1);
+        return prefix+(max + 1);
     }
 }

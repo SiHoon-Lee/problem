@@ -2,6 +2,7 @@ package com.kakao.problem.web.service;
 
 import com.kakao.problem.web.domain.Program;
 import com.kakao.problem.web.domain.ProgramBulkRequest;
+import com.kakao.problem.web.domain.Region;
 import com.kakao.problem.web.repository.ProgramRepository;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
@@ -14,6 +15,7 @@ import javax.transaction.Transactional;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 @Slf4j
 @Service
@@ -35,7 +37,10 @@ public class ProgramService {
                 .withSkipLines(1)
                 .build();
 
-        return csvToBean.parse().stream().filter(program -> programRepository.save(program) != null).count();
+        return csvToBean.parse().stream().filter(program -> {
+            program.setRegions(Region.regionParser(program.getServiceArea()));
+            return programRepository.save(program) != null;
+        }).count();
     }
 
 }

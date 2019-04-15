@@ -1,11 +1,18 @@
 package com.kakao.problem.web.domain;
 
+import com.kakao.problem.app.common.RegionUtil;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
+import java.util.stream.Collectors;
 
+@Data
+@Entity
+@NoArgsConstructor
 public class Region {
 
     @Id
@@ -13,6 +20,19 @@ public class Region {
     @GenericGenerator(name = "region-generator",
             parameters = @Parameter(name = "prefix", value = "region"),
             strategy = "com.kakao.problem.app.generator.RegionGenerator")
-    private String id;
+    private String regionId;
+
+    private String region;
+
+    public Region(String region) {
+        this.region = region;
+    }
+
+    public static List<Region> regionParser(String region){
+
+        List<String> regionList = RegionUtil.regExecuter(region);
+
+        return regionList.stream().map(r -> new Region(r)).collect(Collectors.toList());
+    }
 
 }
