@@ -8,7 +8,6 @@ import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 @Entity
@@ -28,11 +27,10 @@ public class Region {
         this.region = region;
     }
 
-    public static List<Region> regionParser(String region){
+    public static List<String> regionParser(String region){
 
         List<String> regionList = RegionUtil.regExecuter(region);
-
-        return regionList.stream().map(r -> new Region(r)).collect(Collectors.toList());
+        return regionList;
     }
 
 }

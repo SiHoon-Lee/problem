@@ -26,6 +26,19 @@ curl -X POST \
   -H 'postman-token: 394e9376-2fc9-8f05-75c0-8eacd027ed90' \
   -F file=@program.csv
 ```
+
+* 지역코드 검색
+```
+curl -X POST \
+  http://localhost:8080/program \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -H 'postman-token: 50730daa-8cf1-bad4-12e3-741bfd8fe17e' \
+  -d '{
+	"region_code" : "reg1"
+}'
+```
+
 * 토큰 갱신
 ```
 curl -X GET \

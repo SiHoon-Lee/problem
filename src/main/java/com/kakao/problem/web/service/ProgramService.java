@@ -15,7 +15,7 @@ import javax.transaction.Transactional;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -26,6 +26,9 @@ public class ProgramService {
 
     @Autowired
     private ProgramRepository programRepository;
+
+    @Autowired
+    private RegionService regionService;
 
     @Transactional
     public Long bulk(ProgramBulkRequest programBulkRequest) throws IOException {
@@ -38,9 +41,13 @@ public class ProgramService {
                 .build();
 
         return csvToBean.parse().stream().filter(program -> {
-            program.setRegions(Region.regionParser(program.getServiceArea()));
-            return programRepository.save(program) != null;
+            program.setRegions(this.regionService.getRegions(program.getServiceArea()));
+            return this.programRepository.save(program) != null;
         }).count();
+    }
+
+    public List<Program> getProgramsByRegionCode(Region region){
+        return programRepository.findByRegions(region);
     }
 
 }
