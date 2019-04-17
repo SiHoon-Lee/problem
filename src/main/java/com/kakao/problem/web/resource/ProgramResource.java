@@ -3,7 +3,6 @@ package com.kakao.problem.web.resource;
 import com.kakao.problem.web.domain.*;
 import com.kakao.problem.web.service.ProgramService;
 import com.kakao.problem.web.service.RegionService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
