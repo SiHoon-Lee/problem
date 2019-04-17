@@ -1,16 +1,14 @@
 package com.kakao.problem.web.domain;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.validation.constraints.NotNull;
+
+import lombok.*;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ProgramFindRequest {
+public class RegionCodeRequest {
 
     @NotNull
-    private String serviceArea;
+    private String regionCode;
 
 }

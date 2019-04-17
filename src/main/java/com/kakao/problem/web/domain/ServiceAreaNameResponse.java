@@ -9,13 +9,13 @@ import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ProgramFindResponse {
+public class ServiceAreaNameResponse {
 
     private String region;
 
     private List<ProgramSimpleInfo> programs;
 
-    public ProgramFindResponse(String region, List<Program> programs) {
+    public ServiceAreaNameResponse(String region, List<Program> programs) {
 
         this.region = region;
         if(programs != null) this.programs = programs.stream().map(program -> new ProgramSimpleInfo(program.getProgramName(), program.getCategoryName())).collect(Collectors.toList());
